@@ -18,7 +18,7 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong>Your Top Match: </strong></h3>
+            <h3 class="panel-title"><strong>Your Matches: </strong></h3>
           </div>
           <div class="panel-body">
             <div class="well">
@@ -45,10 +45,13 @@
             console.log(data.users[i].matchNum);//this is working
             if (data.users[i].matchNum = userMatchNum) { //this isn't
               console.log("Matched with: " + data.users[i].name);
+              matchedUsers.push(users[i]);
             }
-
           }
-          
+          for (var i = 0; i < matchedUsers.length; i++) {
+            $("#name").append(matchedUsers[i].name);
+            $("#age").append(matchedUsers[i].age);
+          } 
         }
         else {
           $("#name").text("sorry, we couldn't find anyone :(");

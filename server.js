@@ -50,8 +50,8 @@ app.get("/api/users", function(req, res) {
 var newUser = req.body;
 //matching algorithm 
 for (var i = 0; i < users.length; i++) {
-var total = users[i].work + users[i].sports + users[i].resturaunts + users[i].reliable + users[i].trust;
-var averageScore = total / 5;
+var total = parseInt(users[i].work + users[i].sports + users[i].resturaunts + users[i].reliable + users[i].trust);
+var averageScore = parseInt(total / 5);
 users[i].matchNum = averageScore;	
 	}
 

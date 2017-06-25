@@ -35,7 +35,7 @@
 
               <div class="form-group">
                 <label for="role">Age</label>
-                <input type="text" class="form-control" id="role">
+                <input type="text" class="form-control" id="age">
               </div>
 
               <div class="form-group">
@@ -92,8 +92,9 @@ var userMatchNum = 0;
         reliable: $("#reliable").val(),
         trust: $("#trust").val()
       };
-var userTotal = newUser.work + newUser.resturaunts + newUser.sports + newUser.reliable + newUser.trust;
-userMatchNum = userTotal / 5;
+var userTotal = parseInt(newUser.work + newUser.resturaunts + newUser.sports + newUser.reliable + newUser.trust);
+userMatchNum = parseInt(userTotal / 5);
+console.log(userMatchNum);
 
       $.post("/api/users", newUser)
       .done(function(data) {
