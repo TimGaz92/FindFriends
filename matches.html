@@ -43,7 +43,7 @@
           // $("#age").text(data.age);
           for (var i = 0; i < data.users.length; i++) {
             console.log(data.users[i].matchNum);//this is working
-            if (data.users[i].matchNum = userMatchNum) { //this isn't
+            if (data.users[i].matchNum = userMatchNum) { //this isn't - the userMatchNum variable wont carry between JS files - I can push it to the API obj and then call it back down later
               console.log("Matched with: " + data.users[i].name);
               matchedUsers.push(users[i]);
             }

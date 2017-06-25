@@ -15,7 +15,7 @@
     <div class="jumbotron">
       <h1>Coding Friend Finder</h1>
       <hr>
-      <a href="/matches"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-heart"></span>Your Matches</button></a>
+      <a><button type="button"  id = "match-btn" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-heart"></span>Your Matches</button></a>
     </div>
     <div class="row">
 
@@ -78,8 +78,29 @@
       </div>
     </div>
   </div>
+<!-- Modal for Matches -->
+<div class="modal fade" id="matchModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">You've Matched With:</h4>
+        </div>
+        <div class="modal-body">
+          <p id="matchDiv"></p><br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <script type="text/javascript">
+console.log("using correct version of index");
+
 var userMatchNum = 0;
     $("#add-btn").on("click", function(event) {
       event.preventDefault();
@@ -92,6 +113,7 @@ var userMatchNum = 0;
         reliable: $("#reliable").val(),
         trust: $("#trust").val()
       };
+
 var userTotal = parseInt(newUser.work + newUser.resturaunts + newUser.sports + newUser.reliable + newUser.trust);
 userMatchNum = parseInt(userTotal % 5);
 console.log("Match Number:" + userMatchNum);
@@ -102,6 +124,34 @@ console.log("Match Number:" + userMatchNum);
         alert("Adding User...");
       });
     });
+
+
+$("#match-btn").on("click", function(){
+
+  $.get("/api/users" , function(data) {
+        // console.log(data);
+    if (data) {
+          // $("#name").text(data.name);
+          // $("#age").text(data.age);
+      for (var i = 0; i < data.users.length; i++) {
+          console.log("Number of users: " + data.users.length)
+            console.log("user match numbers: " + data.users[i].matchNum);//this is working
+          if (data.users[i].matchNum = userMatchNum) { 
+              console.log("Matched with: " + data.users[i].name);
+              data.matchedUsers.push(users[i]);
+          }
+      }
+          for (var i = 0; i < data.matchedUsers.length; i++) {
+            $("#matchDiv").append(" matched with: " + data.matchedUsers[i].name + "<br>");
+          } 
+    }
+        else {
+          $("#name").text("sorry, we couldn't find anyone :(");
+          $("#stats").hide();
+        }
+  });
+});
+
 </script> 
 
 </body>

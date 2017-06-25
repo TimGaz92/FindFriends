@@ -4,6 +4,7 @@ var path = require("path");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+console.log("using correct version of server");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
