@@ -93,8 +93,8 @@ var userMatchNum = 0;
         trust: $("#trust").val()
       };
 var userTotal = parseInt(newUser.work + newUser.resturaunts + newUser.sports + newUser.reliable + newUser.trust);
-userMatchNum = parseInt(userTotal / 5);
-console.log(userMatchNum);
+userMatchNum = parseInt(userTotal % 5);
+console.log("Match Number:" + userMatchNum);
 
       $.post("/api/users", newUser)
       .done(function(data) {

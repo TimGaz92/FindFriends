@@ -22,10 +22,10 @@
           </div>
           <div class="panel-body">
             <div class="well">
-              <h2 id="name">Default</h2>
+              <h2 id="nameHeader">Default</h2>
               <div id="stats">
                 <h3><strong>Name:</strong> <span id="name">default</span></h3>
-                <h3><strong>Age:</strong> <span id="age">default</span></h3>
+                <!-- <h3><strong>Age:</strong> <span id="age">default</span></h3> -->
               </div>
             </div>
           </div>
@@ -49,8 +49,7 @@
             }
           }
           for (var i = 0; i < matchedUsers.length; i++) {
-            $("#name").append(matchedUsers[i].name);
-            $("#age").append(matchedUsers[i].age);
+            $("#name").append(" matched with: " + matchedUsers[i].name + "<br>");
           } 
         }
         else {
