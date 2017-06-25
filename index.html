@@ -93,7 +93,7 @@
         trust: $("#trust").val()
       };
 
-      $.post("/api/new", newUser)
+      $.post("/api/users", newUser)
       .done(function(data) {
         console.log(data);
         alert("Adding User...");

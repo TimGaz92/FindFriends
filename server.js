@@ -10,7 +10,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-var users = [];
+var users = [
+	{name: "test user",
+	age: 33,
+	work: 5,
+	sports: 5, 
+	resturaunts: 5, 
+	sports: 5, 
+	reliable: 5, 
+	trust: 5},  
+];
 
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
@@ -20,9 +29,8 @@ app.get("/matches", function(req, res) {
   res.sendFile(path.join(__dirname, "matches.html"));
 });//working
 
-app.post("/api/new", function(req, res) {
+app.post("/api/users", function(req, res) {
   var newUser = req.body;
-  newUser.routeName = newUser.name;
 
   console.log(newUser);
 
@@ -30,6 +38,13 @@ app.post("/api/new", function(req, res) {
 
   res.json(newUser);
 });//not working
+
+
+app.get("/api/users", function(req, res) {
+ // var chosen = req.params.characters;
+   return res.json(users);
+
+});
 
 
 
