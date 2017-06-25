@@ -10,18 +10,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+
 var users = [
 	{name: "test user",
 	age: 33,
 	work: 5,
 	sports: 5, 
-	resturaunts: 5, 
-	sports: 5, 
+	resturaunts: 5,  
 	reliable: 5, 
 	trust: 5},  
 ];
 
 var matchedUsers = [];
+var allUsers = {users, matchedUsers};
 
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
@@ -39,26 +40,22 @@ app.post("/api/users", function(req, res) {
   users.push(newUser);
 
   res.json(newUser);
+
+  res.json(matchedUsers);
 });//not working
 
 
 app.get("/api/users", function(req, res) {
  // var chosen = req.params.characters;
-
+var newUser = req.body;
 //matching algorithm 
 for (var i = 0; i < users.length; i++) {
-	var workMatch = users[i].work  / newUser.work;
-	var resturauntsMatch = users[i].resturaunts / newUser.resturaunts;
-	var sportsMatch = users[i].sports / newUser.sports;
-	var reliableMatch = users[i].reliable / newUser.reliable;
-	var trustMatch = users[i].trust / newUser.trust;
-var matchNum = workMatch + resturauntsMatch + sportsMatch + reliableMatch + trustMatch; 
-	if (matchNum > 1) {
-		matchedUsers.push(users[i]);
+var total = users[i].work + users[i].sports + users[i].resturaunts + users[i].reliable + users[i].trust;
+var averageScore = total / 5;
+users[i].matchNum = averageScore;	
 	}
-}
 
-   return res.json(users);
+   return res.json(allUsers);
 
 });
 

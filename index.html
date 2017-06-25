@@ -80,7 +80,7 @@
   </div>
 
   <script type="text/javascript">
-
+var userMatchNum = 0;
     $("#add-btn").on("click", function(event) {
       event.preventDefault();
       var newUser = {
@@ -92,6 +92,8 @@
         reliable: $("#reliable").val(),
         trust: $("#trust").val()
       };
+var userTotal = newUser.work + newUser.resturaunts + newUser.sports + newUser.reliable + newUser.trust;
+userMatchNum = userTotal / 5;
 
       $.post("/api/users", newUser)
       .done(function(data) {
@@ -99,7 +101,7 @@
         alert("Adding User...");
       });
     });
-  </script>
+</script> 
 
 </body>
 </html>

@@ -37,10 +37,18 @@
   <script type="text/javascript">
 
       $.get("/api/users" , function(data) {
-        console.log(data);
+        // console.log(data);
         if (data) {
-          $("#name").text(data.name);
-          $("#age").text(data.age);
+          // $("#name").text(data.name);
+          // $("#age").text(data.age);
+          for (var i = 0; i < data.users.length; i++) {
+            console.log(data.users[i].matchNum);//this is working
+            if (data.users[i].matchNum = userMatchNum) { //this isn't
+              console.log("Matched with: " + data.users[i].name);
+            }
+
+          }
+          
         }
         else {
           $("#name").text("sorry, we couldn't find anyone :(");
