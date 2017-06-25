@@ -142,7 +142,7 @@ $("#match-btn").on("click", function(){
           }
       }
           for (var i = 0; i < data.matchedUsers.length; i++) {
-            $("#matchDiv").append(" matched with: " + data.matchedUsers[i].name + "<br>");
+            $("#matchDiv").append(" matched with: " + data.matchedUsers[i].name + "_" + data.users[i].age + "<br>");
           } 
     }
         else {
