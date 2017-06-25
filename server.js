@@ -21,6 +21,8 @@ var users = [
 	trust: 5},  
 ];
 
+var matchedUsers = [];
+
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });//working
@@ -42,6 +44,20 @@ app.post("/api/users", function(req, res) {
 
 app.get("/api/users", function(req, res) {
  // var chosen = req.params.characters;
+
+//matching algorithm 
+for (var i = 0; i < users.length; i++) {
+	var workMatch = users[i].work  / newUser.work;
+	var resturauntsMatch = users[i].resturaunts / newUser.resturaunts;
+	var sportsMatch = users[i].sports / newUser.sports;
+	var reliableMatch = users[i].reliable / newUser.reliable;
+	var trustMatch = users[i].trust / newUser.trust;
+var matchNum = workMatch + resturauntsMatch + sportsMatch + reliableMatch + trustMatch; 
+	if (matchNum > 1) {
+		matchedUsers.push(users[i]);
+	}
+}
+
    return res.json(users);
 
 });
