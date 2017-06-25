@@ -127,7 +127,7 @@ console.log("Match Number:" + userMatchNum);
 
 
 $("#match-btn").on("click", function(){
-
+  $("#matchModal").modal("toggle");
   $.get("/api/users" , function(data) {
         // console.log(data);
     if (data) {
@@ -137,8 +137,8 @@ $("#match-btn").on("click", function(){
           console.log("Number of users: " + data.users.length)
             console.log("user match numbers: " + data.users[i].matchNum);//this is working
           if (data.users[i].matchNum = userMatchNum) { 
-              console.log("Matched with: " + data.users[i].name);
-              data.matchedUsers.push(users[i]);
+              console.log("Matched with: " + data.users[i].name + "_" + data.users[i].age);
+              data.matchedUsers.push(data.users[i]);
           }
       }
           for (var i = 0; i < data.matchedUsers.length; i++) {
@@ -146,7 +146,7 @@ $("#match-btn").on("click", function(){
           } 
     }
         else {
-          $("#name").text("sorry, we couldn't find anyone :(");
+          $("#matchDiv").text("sorry, we couldn't find anyone :(");
           $("#stats").hide();
         }
   });
