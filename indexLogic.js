@@ -10,7 +10,8 @@ var userMatchNum = 0;
         resturaunts: $("#resturaunts").val(),
         sports: $("#sports").val(),
         reliable: $("#reliable").val(),
-        trust: $("#trust").val()
+        trust: $("#trust").val(), 
+        tagLine: $("#tagLine").val()
       };
 
 var userTotal = parseInt(newUser.work + newUser.resturaunts + newUser.sports + newUser.reliable + newUser.trust);

@@ -39,6 +39,12 @@
               </div>
 
               <div class="form-group">
+                <label for="role">Tell us something about yourself (your tag line)</label>
+                <input type="text" class="form-control" id="tagLine">
+              </div>
+
+
+              <div class="form-group">
                 <label for="Work">On a Scale from one to 10, how important is your job to you?</label>
                 <input type="text" class="form-control" id="work">
               </div>
@@ -111,7 +117,8 @@ var userMatchNum = 0;
         resturaunts: $("#resturaunts").val(),
         sports: $("#sports").val(),
         reliable: $("#reliable").val(),
-        trust: $("#trust").val()
+        trust: $("#trust").val(),
+        tagline: $("#tagLine").val()
       };
 
 var userTotal = parseInt(newUser.work + newUser.resturaunts + newUser.sports + newUser.reliable + newUser.trust);
@@ -137,13 +144,15 @@ $("#match-btn").on("click", function(){
           console.log("Number of users: " + data.users.length)
             console.log("user match numbers: " + data.users[i].matchNum);//this is working
           if (data.users[i].matchNum = userMatchNum) { 
-              console.log("Matched with: " + data.users[i].name + "_" + data.users[i].age);
+              console.log("Matched with: " + data.users[i].name);
               data.matchedUsers.push(data.users[i]);
+          for (var i = 0; i < data.matchedUsers.length; i++) {
+            $("#matchDiv").append(" matched with: " + data.matchedUsers[i].name + " " + data.matchedUsers[i].age +  " " + data.matchedUsers[i].tagline + "<br>");
+          } 
+
           }
       }
-          for (var i = 0; i < data.matchedUsers.length; i++) {
-            $("#matchDiv").append(" matched with: " + data.matchedUsers[i].name + "_" + data.users[i].age + "<br>");
-          } 
+
     }
         else {
           $("#matchDiv").text("sorry, we couldn't find anyone :(");
