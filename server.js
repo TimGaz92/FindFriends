@@ -19,7 +19,8 @@ var users = [
 	sports: 5, 
 	resturaunts: 5,  
 	reliable: 5, 
-	trust: 5},  
+	trust: 5, 
+  tagline: "I'm a test user"},  
 ];
 
 var matchedUsers = [];
